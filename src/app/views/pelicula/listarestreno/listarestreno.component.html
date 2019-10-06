@@ -1,0 +1,140 @@
+<div class="animated fadeIn" >
+    <div class="row" >
+        <div  class="col-sm-6" *ngFor="let pelicula of peli" >
+          <div class="card" >
+            <div class="card-header">
+                    CARTELERA PELICULAS EN ESTRENO
+              <div class="card-header-actions">
+                <a href="https://valor-software.com/ngx-bootstrap/#/carousel" target="_blank">
+                  <small className="text-muted">docs</small>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+                    <div class="card-body" >
+                            <img class="card-img-top" width="200" height="200" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+                                       <h4 style="color: black;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;text-align: center">{{pelicula.Titulo}}</h4>
+                                       <span>
+                                         <label class="text-dark" style="margin-left: 15px">ESTRENO: </label> <label style="color: black">{{pelicula.Fecha_estreno}}</label>
+                                         <label style="margin-left: 50px;" class="text-dark">RANKING: </label> <label style="margin-left: 25px;" style="color: black" >{{pelicula.Ranking}}%</label>
+                                         <button type="button" class="btn btn-dark mr-1" data-toggle="modal"  (click)="lista(pelicula.idPelicula)">
+                                           detalle
+                                        </button>
+                                       </span>
+                       </div>
+            </div>
+          
+          </div>
+        </div>
+        </div>
+      
+</div>
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">DETALLE DE PELICULA</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"  *ngFor="let pelicula of pel">
+        <video src="assets/img/video/LA HERA DEL HIELO 5 (2016) Nuevo Tráiler Oficial 2 Español.mp4" width="450" height="200" controls autoplay preload></video>
+
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.Descripcion}}</h5>
+         <h5 class="card-text"> 
+           <label style="color: black">Titulo: </label> <span style="color: blue">{{pelicula.Titulo}}</span>
+        </h5>
+        <h5 class="card-text"> 
+            <label style="color: black">Genero:</label> <span style="color: blue">{{pelicula.Genero}}</span>
+        </h5>
+         <h5 class="card-text"> 
+           <label style="color: black;margin-left: 10px">Fecha Estreno:</label> <span style="color: blue;margin-left: 5px">{{pelicula.Fecha_estreno}}</span>
+          </h5>
+          <h5 class="card-text"> 
+              <label style="color: black">Costo:</label> <span style="color: blue">{{pelicula.Costo}}</span>
+          </h5>
+          <h5 class="card-text"> 
+              <label style="color: black;margin-left: 10px">Ranking:</label> <span style="color: blue;margin-left: 5px">{{pelicula.Ranking}}%</span>
+             </h5><br>
+             <button type="button"  data-toggle="modal" data-target="#VenderPelicula" class="btn btn-secondary" (click)="Detallepelicula(pelicula.idPelicula)" data-dismiss="modal" style="margin-left: 40px;">Alquiler</button>
+             <button type="button" class="btn btn-dark" style="margin-left: 40px;">Vender</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #mydetalle="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">OPERACION ALQUILER</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body "  *ngFor="let peliculas of detaPeli">
+          <form >
+            <div class="row col-12">
+                <div class="form-group col-4">
+                    <label for="email">Titulo </label>
+                    <input type="email" class="form-control" value="{{peliculas.Titulo}}" readonly name="titulo">
+                  </div>
+
+                  <div class="form-group col-4">
+                    <label for="pwd">Costo:</label>
+                    <input type="text" class="form-control"  readonly value="{{peliculas.Costo}}" id="Costo" name="Costo">
+                  </div>
+                  <div class="form-group col-4">
+                      <label for="pwd">Pago:</label>
+                      <input type="number"  class="form-control"  (keyup)="onKey($event)" name="pago">
+                    </div>
+            </div>
+           
+           <div class="row col-12">
+              <div class="form-group col-4">
+                  <label for="pwd">Vuelto:</label>
+                  <input type="number" name="vuelto"  readonly value="{{rpta}}" id="vuelto"  class="form-control" name="vuelto">
+                </div>
+                <input type="hidden" class="form-control" id="idPelicula" value="{{peliculas.idPelicula}}" readonly name="titulo">
+
+                <div class="form-group col-4">
+                    <label for="pwd">Fecha Inicio</label>
+                    <input type="date" id="fecha_inicio"   class="form-control" name="fecha_inicio">
+                  </div>
+                  <div class="form-group col-4">
+                      <label for="pwd">Fecha Fin</label>
+                      <input type="date"  id="fecha_fin" class="form-control"   name="fecha_fin">
+                    </div>
+                    <div class="form-group col-6">
+                    <select class="browser-default custom-select"   id="user" name="user"  >
+                        <option  selected  >Usuarios</option>
+                       
+                        <option *ngFor="let alluser of selectUser"    value="{{alluser.idUsuario}}">{{alluser.Nombre}}</option>
+                      </select>
+                    </div>
+                      <div class="form-group col-6">
+                          <label for="pwd">CANTIDAD</label>
+                          <input type="number"  id="cantidad" class="form-control"   name="cantidad">
+                        </div>
+
+
+
+           </div>
+          </form>
+      </div>
+     
+      <div class="modal-footer">
+          <button type="button" class="btn btn-succes" (click)="Alquiler()">Alquiler</button>
+
+        <button type="button" class="btn btn-danger" (click)="mydetalle.hide()">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
