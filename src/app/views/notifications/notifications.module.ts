@@ -20,12 +20,12 @@ import { NotificationsRoutingModule } from './notifications-routing.module';
     CommonModule,
     NotificationsRoutingModule,
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+   /* ModalModule.forRoot()*/
   ],
   declarations: [
     AlertsComponent,
     BadgesComponent,
-    ModalsComponent
+    /*  ModalsComponent*/
   ]
 })
 export class NotificationsModule { }

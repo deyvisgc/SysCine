@@ -60,7 +60,7 @@ import { BaseRoutingModule } from './base-routing.module';
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  declarations: [
+ /* declarations: [
     CardsComponent,
     FormsComponent,
     SwitchesComponent,
@@ -73,5 +73,6 @@ import { BaseRoutingModule } from './base-routing.module';
     ProgressComponent,
     TooltipsComponent
   ]
+  */
 })
 export class BaseModule { }

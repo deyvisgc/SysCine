@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { PeliculasServices } from '../../../Servicios/peliculas-service.service';
 import { Pelicula } from '../../../interfaces/Pelicula';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Users } from '../../../interfaces/users';
 import { Alquiler } from '../../../interfaces/Alquiler';
+import { Temporal } from '../../../interfaces/Temporal';
 
 @Component({
   selector: 'app-listarestreno',
@@ -13,8 +14,9 @@ import { Alquiler } from '../../../interfaces/Alquiler';
 export class ListarestrenoComponent implements OnInit {
  
   public productAdd: Object[] = [];
+ 
 
-  constructor(private peliculaService:PeliculasServices) {
+  constructor(private peliculaService:PeliculasServices,private renderer:Renderer2) {
     this.ListarPeliculas();
    }
   peli:Pelicula[];
@@ -22,8 +24,11 @@ export class ListarestrenoComponent implements OnInit {
   detaPeli:Pelicula[];
   selectUser:Users[];
   alquiler:Alquiler[];
+  temporal:Temporal[];
   @ViewChild('myModal', {static: false}) public myModal: ModalDirective;
   @ViewChild('mydetalle', {static: false}) public mydetalle: ModalDirective;
+  @ViewChild('div', {static: false}) div: ElementRef;
+
   lista(id) {
     this.myModal.show();
     this.peliculaService.listar(id).subscribe((data:Pelicula[])=>{
@@ -50,13 +55,14 @@ export class ListarestrenoComponent implements OnInit {
       this.selectUser=data;
     })
   }
-  rpta:number;
+/*  rpta:number;
   onKey(event){
     var inputValue = document.getElementById('Costo')["value"];
     this.rpta = inputValue -event.target.value;
     
   } 
- 
+  */
+
   alqui: Alquiler= {
     Fecha_alquiler:null,
     Fecha_devolucion:null,
@@ -66,52 +72,60 @@ export class ListarestrenoComponent implements OnInit {
     alquiler_vuelto:null,
     cantidad:null
   };
-  pelicu: Pelicula= {
-    Genero: null,
-    Titulo:null,
-    Descripcion: null,
-    foto_pelicula:null,
-    video_Pelicula: null,
-    Costo: null,
-    Fecha_estreno:null,
-    Cantidad_Pelicula: null,
-    Ranking:null,
+  tem:Temporal={
+    idPersona: null,
+    Canitdad:null,
+    Fecha_Alquiler:null,
+    Fechafin: null,
+    Total: null,
     idPelicula:null,
-    estado_pelicula:null
-  };
-
-
+    subtotal:null,
+    costo:null
+   }
   
   Alquiler(){
-    var alquiler_vuelto = document.getElementById('vuelto')["value"];
     var Fecha_alquiler = document.getElementById('fecha_inicio')["value"];
     var Fecha_devolucion = document.getElementById('fecha_fin')["value"];
     var Persona_idPersona = document.getElementById('user')["value"];
     var Estado_Pelicula='alquilado';
     var Pelicula_idPelicula=document.getElementById('idPelicula')["value"];
     var cantidad=document.getElementById('cantidad')["value"];
-    var estado_pel='Alquilado';
 
     this.alqui.Fecha_alquiler=Fecha_alquiler;
     this.alqui.Fecha_devolucion=Fecha_devolucion;
     this.alqui.Estado_Pelicula=Estado_Pelicula;
     this.alqui.Persona_idPersona=Persona_idPersona;
     this.alqui.Pelicula_idPelicula=Pelicula_idPelicula;
-    this.alqui.alquiler_vuelto=alquiler_vuelto;
     this.alqui.cantidad=cantidad;
-    this.pelicu.estado_pelicula=estado_pel;
     console.log(this.alquiler);
-      this.peliculaService.Alquiler(this.alqui).subscribe((data)=>{
+  /*    this.peliculaService.Alquiler(this.alqui).subscribe((data)=>{
         this.mydetalle.hide();
         alert('exito al alquilar su pelicula');
       })
+      */
       
 
   }
-  
-  
+  Agregar(){
+    var Fecha_alquiler1 = document.getElementById('fecha_inicio')["value"];
+    var Fecha_devolucion1 = document.getElementById('fecha_fin')["value"];
+    var Persona_idPersona1 = document.getElementById('user')["value"];
+    var Pelicula_idPelicula1=document.getElementById('idPelicula')["value"];
+    var cantidad1=document.getElementById('cantidad')["value"];
+
+    this.tem.idPersona=Persona_idPersona1;
+    this.tem.Canitdad=cantidad1;
+    this.tem.Fecha_Alquiler=Fecha_alquiler1;
+    this.tem.Fechafin=Fecha_devolucion1;
+    this.tem.idPelicula=Pelicula_idPelicula1;
+    console.log(this.tem);
+    this.peliculaService.Alquiler(this.tem).subscribe((data)=>{
+      this.mydetalle.hide();
+      alert('exito al alquilar su pelicula');
+    })
 
 
+  }
   ngOnInit() {
   }
 
