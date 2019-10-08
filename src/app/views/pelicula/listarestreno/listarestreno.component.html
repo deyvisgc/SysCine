@@ -139,21 +139,21 @@
                 <tr>
                   <th scope="col">Titulo</th>
                   <th scope="col">Cantidad</th>
-                  <th scope="col">Pago</th>
                   <th scope="col">Cliente</th>
                   <th scope="col">SubTotal</th>
+                  <th scope="col">Costo</th>
+                     <th scope="col"></th>
                   <th scope="col">Operaciones</th>
                 </tr>
               </thead>
-              <tbody >
+              <tbody *ngFor="let tem of temporal" >
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{tem.var_Titulo}}</td>
+                  <td>{{tem.var_Cantidad}}</td>
+                  <td> {{tem.VAR_Per_nombre}}</td>
+                  <td> {{tem.var_subtotal}}</td>
+                  <td> {{tem.var_costo_pelicula}}</td>
+                  <td><button>dsdsdsds</button></td>
                 </tr>
               </tbody>
 

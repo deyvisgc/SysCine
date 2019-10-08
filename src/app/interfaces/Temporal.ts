@@ -5,9 +5,16 @@ export interface Temporal {
     Fecha_Alquiler:string;
     Fechafin: string;
     Total: number;
-    idPelicula:string;
+    idPelicula:number;
     subtotal:number,
-    costo:number
+    costo:number,
+    VAR_Per_nombre:string,
+    Var_count:number,
+    total_venta:number,
+    var_Cantidad:number,
+    var_costo_pelicula:number,
+    var_subtotal:number,
+    var_Titulo:string,
 
     //edad: string;
     

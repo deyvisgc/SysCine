@@ -80,7 +80,15 @@ export class ListarestrenoComponent implements OnInit {
     Total: null,
     idPelicula:null,
     subtotal:null,
-    costo:null
+    costo:null,
+    VAR_Per_nombre:null,
+    Var_count:null,
+    total_venta:null,
+    var_Cantidad:null,
+    var_costo_pelicula:null,
+    var_subtotal:null,
+    var_Titulo:null,
+
    }
   
   Alquiler(){
@@ -118,9 +126,10 @@ export class ListarestrenoComponent implements OnInit {
     this.tem.Fecha_Alquiler=Fecha_alquiler1;
     this.tem.Fechafin=Fecha_devolucion1;
     this.tem.idPelicula=Pelicula_idPelicula1;
-    console.log(this.tem);
-    this.peliculaService.Alquiler(this.tem).subscribe((data)=>{
-      this.mydetalle.hide();
+    this.peliculaService.Alquiler(this.tem).subscribe((data:Temporal[])=>{
+      console.log(this.temporal=data);
+     // this.mydetalle.hide();
+
       alert('exito al alquilar su pelicula');
     })
 
