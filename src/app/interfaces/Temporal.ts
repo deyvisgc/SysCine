@@ -15,6 +15,7 @@ export interface Temporal {
     var_costo_pelicula:number,
     var_subtotal:number,
     var_Titulo:string,
+    var_id_Persona:number,
 
     //edad: string;
     

@@ -20,11 +20,30 @@ export class PeliculasServices {
   selectUser(){
     return this.httpclient.get(this.CrearPelicula + '/allUser');
   }
+
+  verCarrito(id){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+    return this.httpclient.get(this.CrearPelicula + '/VerCarrito/' +id ,{headers: headers});
+  }
   Alquiler(users){
     const headers = new HttpHeaders({
       'Content-Type':  'application/json'
      });
      return this.httpclient.post(this.CrearPelicula + '/agregarCarrito/?',users,{ headers: headers});
+  }
+  temporar(id){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+    return this.httpclient.get(this.CrearPelicula + '/temporal/'+ id,{headers: headers});
+  }
+  detalle(id){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+    return this.httpclient.get(this.CrearPelicula + '/DetalleAlquiler/'+ id,{headers: headers});
   }
  
 

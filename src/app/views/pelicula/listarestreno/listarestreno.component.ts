@@ -25,8 +25,11 @@ export class ListarestrenoComponent implements OnInit {
   selectUser:Users[];
   alquiler:Alquiler[];
   temporal:Temporal[];
+  detalleAlquiler:Temporal[];
+  vercarrito:Temporal[];
   @ViewChild('myModal', {static: false}) public myModal: ModalDirective;
   @ViewChild('mydetalle', {static: false}) public mydetalle: ModalDirective;
+  @ViewChild('myAlquiler', {static: false}) public myAlquiler: ModalDirective;
   @ViewChild('div', {static: false}) div: ElementRef;
 
   lista(id) {
@@ -53,15 +56,9 @@ export class ListarestrenoComponent implements OnInit {
     });
     this.peliculaService.selectUser().subscribe((data:Users[])=>{
       this.selectUser=data;
-    })
+    });
   }
-/*  rpta:number;
-  onKey(event){
-    var inputValue = document.getElementById('Costo')["value"];
-    this.rpta = inputValue -event.target.value;
-    
-  } 
-  */
+  
 
   alqui: Alquiler= {
     Fecha_alquiler:null,
@@ -88,6 +85,7 @@ export class ListarestrenoComponent implements OnInit {
     var_costo_pelicula:null,
     var_subtotal:null,
     var_Titulo:null,
+    var_id_Persona:null,
 
    }
   
@@ -114,6 +112,7 @@ export class ListarestrenoComponent implements OnInit {
       
 
   }
+
   Agregar(){
     var Fecha_alquiler1 = document.getElementById('fecha_inicio')["value"];
     var Fecha_devolucion1 = document.getElementById('fecha_fin')["value"];
@@ -133,6 +132,34 @@ export class ListarestrenoComponent implements OnInit {
       alert('exito al alquilar su pelicula');
     })
 
+
+  }
+  //evento para sacar el vuelto
+
+  rpta:number;
+  keyup(event){
+    var inputValue = document.getElementById('costo')["value"];
+    this.rpta =parseFloat(event)- parseFloat(inputValue) ;
+   
+   
+    
+  } 
+  Alquilar(id){
+    this.myAlquiler.show();
+    this.peliculaService.detalle(id).subscribe((data:Temporal[])=>{
+     console.log( this.detalleAlquiler = data);
+  })
+
+  }
+  VERCARRITO(){
+    var Persona_idPersona1 = document.getElementById('user')["value"];
+    this.peliculaService.verCarrito(Persona_idPersona1).subscribe((data:Temporal[])=>{
+      this.vercarrito=data;
+    });
+
+  
+  }
+  pagar(){
 
   }
   ngOnInit() {

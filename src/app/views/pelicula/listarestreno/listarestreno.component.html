@@ -127,33 +127,74 @@
                 <option *ngFor="let alluser of selectUser" value="{{alluser.idUsuario}}">{{alluser.Nombre}}</option>
               </select>
             </div><br>
+            <div class="form-group col-12">
+              <button type="button" ng class="btn btn-dark"  (click)="VERCARRITO()">VER CARRITO</button>
+              <div><br>
+                <div style="margin-left: 10px"  class="row  col-12">
+                  <table class="table">
+                      <thead class="thead-dark" >
+                        <tr>
+                          <th >Titulo</th>
+                          <th >Cantidad</th>
+                          <th>Cliente</th>
+                          <th>SubTotal</th>
+                          <th >Costo</th>
+                          <th >Operaciones</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let carrito of vercarrito" >
+                        <tr>
+                          <td>{{carrito.Titulo}}</td>
+                          <td>{{carrito.Canitdad}}</td>
+                          <td> {{carrito.Nombre}}</td>
+                          <td> {{carrito.subtotal}}</td>
+                          <td> {{carrito.costo}}</td>
+                          <td><button  class="btn btn-danger" (click)="Eliminar();">ELIMINAR PRODUCTO</button></td>
+                        </tr>
+                      </tbody>
+        
+                    </table>
+              </div>
+              </div>
+        
+              
+
+        </div>
             <div class="form-group col-4">
-                <button type="button" class="btn btn-dark" (click)="Agregar()">AGREGAR AL CARRITO</button>
+                <button type="button" class="btn btn-dark" (click)="Agregar()">AGREGAR AL CARRITO</button>   
+
+               <span style="margin-left: 10px" *ngFor="let tem of temporal"> <i class="fa fa-product-hunt fa-lg mt-4">TotalProductos: {{tem.Var_count}}</i></span>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="Alquilar(tem.var_id_Persona)">Alquilar</button>
+        
+                <button type="button" class="btn btn-danger" (click)="mydetalle.hide()">Close</button>
               </div>
           </div>
         </form>
       </div>
-      <div style="margin-left: 10px" class="row  col-12">
+      <div  *ngFor="let tem of temporal">
+        <div style="margin-left: 10px"  class="row  col-12">
           <table class="table">
               <thead class="thead-dark" >
                 <tr>
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Cliente</th>
-                  <th scope="col">SubTotal</th>
-                  <th scope="col">Costo</th>
-                     <th scope="col"></th>
-                  <th scope="col">Operaciones</th>
+                  <th >Titulo</th>
+                  <th >Cantidad</th>
+                  <th>Cliente</th>
+                  <th>SubTotal</th>
+                  <th >Costo</th>
+                  <th >Operaciones</th>
                 </tr>
               </thead>
-              <tbody *ngFor="let tem of temporal" >
+              <tbody >
                 <tr>
                   <td>{{tem.var_Titulo}}</td>
                   <td>{{tem.var_Cantidad}}</td>
                   <td> {{tem.VAR_Per_nombre}}</td>
                   <td> {{tem.var_subtotal}}</td>
                   <td> {{tem.var_costo_pelicula}}</td>
-                  <td><button>dsdsdsds</button></td>
+                  <td><button  class="btn btn-danger" (click)="Eliminar();">ELIMINAR PRODUCTO</button></td>
                 </tr>
               </tbody>
 
@@ -161,9 +202,47 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-succes" (click)="Alquiler()">Alquiler</button>
+        <button type="button" class="btn btn-success" (click)="Alquilar(tem.var_id_Persona)">Alquilar</button>
 
         <button type="button" class="btn btn-danger" (click)="mydetalle.hide()">Close</button>
+      </div>
+      </div>
+
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #myAlquiler="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">OPERACION PAGAR</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  *ngFor="let detallAlqui of detalleAlquiler">
+          <div class="row col-12">
+            <div class="form-group col-4">
+              <label for="pwd">Costo:</label>
+              <input type="number" class="form-control"  readonly value="{{detallAlqui.total}}" id="costo" name="Costo">
+            </div>
+            <div class="form-group col-4">
+              <label for="pwd">PAGAR</label>
+              <input type="number"  class="form-control" id="pagar"  (keyup)="keyup($event.target.value)" name="pago">
+            </div>
+            <div class="form-group col-4">
+              <label for="pwd">VUELTO</label>
+              <input type="number" id="VUELTO" value="{{rpta}}" readonly class="form-control" name="VUELTO">
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <button type="button" class="btn btn-warning" (click)="Pagar()">Pagar</button>
+          </div>
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
