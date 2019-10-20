@@ -9,6 +9,7 @@ export interface Pelicula {
     Fecha_estreno:string;
     Cantidad_Pelicula: number;
     Ranking:string;
+    Estado_Pelicula:string;
 
 
     

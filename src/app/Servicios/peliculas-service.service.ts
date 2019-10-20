@@ -27,11 +27,17 @@ export class PeliculasServices {
      });
     return this.httpclient.get(this.CrearPelicula + '/VerCarrito/' +id ,{headers: headers});
   }
-  Alquiler(users){
+  agregarCarrito(users){
     const headers = new HttpHeaders({
       'Content-Type':  'application/json'
      });
      return this.httpclient.post(this.CrearPelicula + '/agregarCarrito/?',users,{ headers: headers});
+  }
+  alquilarPelicula(users){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+     return this.httpclient.post(this.CrearPelicula + '/AlquilerPelicula/?',users,{ headers: headers});
   }
   temporar(id){
     const headers = new HttpHeaders({
@@ -44,6 +50,12 @@ export class PeliculasServices {
       'Content-Type':  'application/json'
      });
     return this.httpclient.get(this.CrearPelicula + '/DetalleAlquiler/'+ id,{headers: headers});
+  }
+  agregarPelicula(pelicula){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+     return this.httpclient.post(this.CrearPelicula + '/Registrar/?',pelicula,{ headers: headers});
   }
  
 

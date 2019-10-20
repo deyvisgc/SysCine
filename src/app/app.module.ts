@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +21,8 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { LogeoComponent } from './views/logeo/logeo.component';
+
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -41,6 +44,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 
 @NgModule({
@@ -57,7 +62,10 @@ import { HttpClientModule } from '@angular/common/http';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    ModalModule.forRoot(),
+
     HttpClientModule,
+    FormsModule,
   ],
   declarations: [
     AppComponent,
@@ -66,6 +74,7 @@ import { HttpClientModule } from '@angular/common/http';
     P500Component,
     LoginComponent,
     RegisterComponent,
+    LogeoComponent,
   ],
   providers: [{
     provide: LocationStrategy,

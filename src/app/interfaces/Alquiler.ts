@@ -6,7 +6,7 @@ export interface Alquiler {
     Estado_Pelicula: string;
     Pelicula_idPelicula: string;
     alquiler_vuelto:string;
-    cantidad:number
+    total:number
     //edad: string;
     
    

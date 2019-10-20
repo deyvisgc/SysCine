@@ -1,6 +1,8 @@
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
+import { LoginService } from '../../Servicios/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +14,12 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(@Inject(DOCUMENT) _document?: any) {
+  constructor(
+    private _auth:LoginService,
+    private _router : Router,
+    @Inject(DOCUMENT) _document?: any
+  
+  ) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -27,4 +34,10 @@ export class DefaultLayoutComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.changes.disconnect();
   }
+  logoutUser()
+  {
+   
+    localStorage.removeItem("token");
+    this._router.navigate(["/logeo"]);
+  }  
 }

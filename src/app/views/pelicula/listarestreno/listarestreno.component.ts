@@ -12,7 +12,6 @@ import { Temporal } from '../../../interfaces/Temporal';
   styleUrls: ['./listarestreno.component.scss']
 })
 export class ListarestrenoComponent implements OnInit {
- 
   public productAdd: Object[] = [];
  
 
@@ -31,6 +30,7 @@ export class ListarestrenoComponent implements OnInit {
   @ViewChild('mydetalle', {static: false}) public mydetalle: ModalDirective;
   @ViewChild('myAlquiler', {static: false}) public myAlquiler: ModalDirective;
   @ViewChild('div', {static: false}) div: ElementRef;
+  @ViewChild('tabla2',{static: false})  tabla2: ElementRef;
 
   lista(id) {
     this.myModal.show();
@@ -67,7 +67,7 @@ export class ListarestrenoComponent implements OnInit {
     Estado_Pelicula:null,
     Pelicula_idPelicula:null,
     alquiler_vuelto:null,
-    cantidad:null
+    total:null
   };
   tem:Temporal={
     idPersona: null,
@@ -85,35 +85,11 @@ export class ListarestrenoComponent implements OnInit {
     var_costo_pelicula:null,
     var_subtotal:null,
     var_Titulo:null,
-    var_id_Persona:null,
+
 
    }
-  
-  Alquiler(){
-    var Fecha_alquiler = document.getElementById('fecha_inicio')["value"];
-    var Fecha_devolucion = document.getElementById('fecha_fin')["value"];
-    var Persona_idPersona = document.getElementById('user')["value"];
-    var Estado_Pelicula='alquilado';
-    var Pelicula_idPelicula=document.getElementById('idPelicula')["value"];
-    var cantidad=document.getElementById('cantidad')["value"];
-
-    this.alqui.Fecha_alquiler=Fecha_alquiler;
-    this.alqui.Fecha_devolucion=Fecha_devolucion;
-    this.alqui.Estado_Pelicula=Estado_Pelicula;
-    this.alqui.Persona_idPersona=Persona_idPersona;
-    this.alqui.Pelicula_idPelicula=Pelicula_idPelicula;
-    this.alqui.cantidad=cantidad;
-    console.log(this.alquiler);
-  /*    this.peliculaService.Alquiler(this.alqui).subscribe((data)=>{
-        this.mydetalle.hide();
-        alert('exito al alquilar su pelicula');
-      })
-      */
-      
-
-  }
-
   Agregar(){
+    this.tabla2.nativeElement.remove();
     var Fecha_alquiler1 = document.getElementById('fecha_inicio')["value"];
     var Fecha_devolucion1 = document.getElementById('fecha_fin')["value"];
     var Persona_idPersona1 = document.getElementById('user')["value"];
@@ -125,7 +101,7 @@ export class ListarestrenoComponent implements OnInit {
     this.tem.Fecha_Alquiler=Fecha_alquiler1;
     this.tem.Fechafin=Fecha_devolucion1;
     this.tem.idPelicula=Pelicula_idPelicula1;
-    this.peliculaService.Alquiler(this.tem).subscribe((data:Temporal[])=>{
+    this.peliculaService.agregarCarrito(this.tem).subscribe((data:Temporal[])=>{
       console.log(this.temporal=data);
      // this.mydetalle.hide();
 
@@ -136,15 +112,8 @@ export class ListarestrenoComponent implements OnInit {
   }
   //evento para sacar el vuelto
 
-  rpta:number;
-  keyup(event){
-    var inputValue = document.getElementById('costo')["value"];
-    this.rpta =parseFloat(event)- parseFloat(inputValue) ;
-   
-   
-    
-  } 
-  Alquilar(id){
+  Alquilar(){
+    var id=document.getElementById('idperso')["value"];
     this.myAlquiler.show();
     this.peliculaService.detalle(id).subscribe((data:Temporal[])=>{
      console.log( this.detalleAlquiler = data);
@@ -152,6 +121,7 @@ export class ListarestrenoComponent implements OnInit {
 
   }
   VERCARRITO(){
+    
     var Persona_idPersona1 = document.getElementById('user')["value"];
     this.peliculaService.verCarrito(Persona_idPersona1).subscribe((data:Temporal[])=>{
       this.vercarrito=data;
@@ -159,10 +129,35 @@ export class ListarestrenoComponent implements OnInit {
 
   
   }
-  pagar(){
+  
+  rpta:number;
+  keyup(event){
+    var inputValue = document.getElementById('total')["value"];
+    this.rpta =parseFloat(event)- parseFloat(inputValue) ;
+   
+   
+    
+  } 
+  Pagar(){
+    var Persona_idPersona = document.getElementById('id_alquiler_Perso')["value"];
+    var Pelicula_idPelicula = document.getElementById('id_alquiler_Pelicula')["value"];
+    var alquiler_vuelto = document.getElementById('VUELTO')["value"];
+    var total = document.getElementById('total')["value"];
 
+    this.alqui.Persona_idPersona=Persona_idPersona;
+    this.alqui.Pelicula_idPelicula=Pelicula_idPelicula;
+    this.alqui.alquiler_vuelto=alquiler_vuelto;
+    this.alqui.total=total;
+  // console.log(this.alquiler);
+    this.peliculaService.alquilarPelicula(this.alqui).subscribe((data)=>{
+        this.myAlquiler.hide();
+        alert('exito al alquilar su pelicula');
+      })
+     
   }
+
   ngOnInit() {
   }
+  
 
 }

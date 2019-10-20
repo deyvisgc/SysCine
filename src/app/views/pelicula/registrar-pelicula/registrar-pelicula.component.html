@@ -1,0 +1,93 @@
+<div class="app-body">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mx-auto">
+                    <div class="card mx-4">
+                        <div class="card-body p-4">
+                            <tabset>
+                                <tab>
+                                    <ng-template tabHeading><i class="icon-calculator"></i>Pelicula</ng-template>
+                                    <h1>Register</h1>
+                                    <p class="text-muted">Registro de Peliculas</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Titulo</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Titulo"
+                                            autocomplete="Titulo" name="titulo" id="titulo" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Genero</span>
+                                        </div>
+                                        <input id="genero" name="genero" type="text" class="form-control" placeholder="genero"
+                                            autocomplete="genero" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Foto</span>
+                                        </div>
+                                        <input type="file" id="profile"  name="profile" (change)="onFileSelect($event)" class="form-control" placeholder="foto"
+                                            autocomplete="new-password" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Video</span>
+                                        </div>
+                                        <input id="video" type="file" class="form-control" placeholder="video"
+                                            autocomplete="new-password" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Precio</span>
+                                        </div>
+                                        <input type="number" id="precio" class="form-control" placeholder="Precio"
+                                            autocomplete="new-password" required>
+                                    </div>
+                                </tab>
+                                <tab>
+                                    <ng-template tabHeading><i class="icon-basket-loaded"></i>Fechas</ng-template>
+                                    <h1>Register</h1>
+                                    <p class="text-muted">Registro de Peliculas</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Fecha Estreno</span>
+                                        </div>
+                                        <input type="date" class="form-control" placeholder="Titulo"
+                                            autocomplete="fecha_estreno" id="fecha_estreno" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Cantidad</span>
+                                        </div>
+                                        <input type="number" id="cantidad" class="form-control" placeholder="Email" autocomplete="email"
+                                            required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Descripcion</span>
+                                        </div>
+                                        <textarea id="Descripcion" class="md-textarea form-control" rows="3"></textarea>
+                                    </div>
+
+
+                                </tab>
+                            </tabset>
+
+
+                        </div>
+                        <div class="card-footer p-4">
+                            <div class="row">
+                                <div class="col-12" >
+                                    <button type="button" class="btn btn-block btn-success" (click)="RegistrarPelicula()">Crear Pelicula</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

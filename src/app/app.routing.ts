@@ -8,11 +8,12 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { LogeoComponent } from './views/logeo/logeo.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'logeo',
     pathMatch: 'full',
   },
   {
@@ -32,6 +33,13 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
+  {
+    path: 'logeo',
+    component: LogeoComponent,
     data: {
       title: 'Login Page'
     }

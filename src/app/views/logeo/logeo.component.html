@@ -1,0 +1,180 @@
+<div class="app-body" style="padding-top: 100px;">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <form class="form" #userLogin="ngForm">
+                                    <h1>Login</h1>
+                                    <p class="text-muted">Sign In to your account</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div>
+                                        <input type="email" class="form-control"
+                                            [class.is-invalid]="email.invalid && email.touched"
+                                            [(ngModel)]="loginUserData.email" #email="ngModel" name="email"
+                                            placeholder="Enter email" required>
+                                        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email
+                                            is required</small>
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-lock"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control"
+                                            [class.is-invalid]="password.invalid && password.touched"
+                                            [(ngModel)]="loginUserData.password" #password="ngModel" name="password"
+                                            placeholder="Enter your Password" required>
+                                        <small class="text-danger"
+                                            [class.d-none]="password.valid || password.untouched">Password is
+                                            required</small>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" (click)="loginUser()"
+                                                [disabled]="userLogin.form.invalid"
+                                                class="btn btn-primary px-4">Login</button>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2>Sign up</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                    <button type="button" class="btn btn-primary active mt-3" data-toggle="modal"
+                                        (click)="RegistrarUser()">Register Now!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header " style="color: mediumseagreen;">
+                <h4 class="modal-title ">Registrar Usuarios</h4>
+                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="animated fadeIn">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <!-- Nav tabs -->
+                            <tabset>
+                                <tab>
+                                    <ng-template tabHeading><i class="icon-calculator"></i>Credenciales</ng-template>
+                                    <div class="row">
+                                        <div class="col-sm-6" style="margin-left: 200px;">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <strong>CREDENCIALES PARA EL INICIO DE SECION</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="name">Usuario</label>
+                                                                <input type="text" class="form-control" id="user"
+                                                                    placeholder="Enter your username">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/.row-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="ccnumber">Password</label>
+                                                                <input type="password" class="form-control"
+                                                                    id="password" placeholder="Enter your password">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/.col-->
+
+                                    </div>
+                                    <!--/.row-->
+                                </tab>
+                                <tab>
+                                    <ng-template tabHeading><i class="icon-basket-loaded"></i>Datos Personales
+                                    </ng-template>
+
+                                    <div class="row">
+                                        <div class="col-sm-9" style="margin-left: 100px;">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <strong>CREDENCIALES PARA SU PERFIL</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row col-sm-12">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="name">Nombre</label>
+                                                                <input type="text" class="form-control" id="nombre"
+                                                                    placeholder="Enter your nombre">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="name">Apellidos</label>
+                                                                <input type="text" class="form-control" id="apellidos"
+                                                                    placeholder="Enter your apellidos">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row col-sm-12">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="name">Telefono</label>
+                                                                    <input type="text" class="form-control" id="telefono"
+                                                                        placeholder="Enter your telefono">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="name">Direccion</label>
+                                                                    <input type="text" class="form-control" id="apellidos"
+                                                                        placeholder="Enter your direccion">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div>
+                                    <!--/.row-->
+                                </tab>
+                            </tabset>
+                        </div>
+                        <!--/.col-->
+
+                    </div>
+                    <!--/.row-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
