@@ -5,6 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Users } from '../../../interfaces/users';
 import { Alquiler } from '../../../interfaces/Alquiler';
 import { Temporal } from '../../../interfaces/Temporal';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listarestreno',
@@ -15,7 +17,7 @@ export class ListarestrenoComponent implements OnInit {
   public productAdd: Object[] = [];
  
 
-  constructor(private peliculaService:PeliculasServices,private renderer:Renderer2) {
+  constructor(private peliculaService:PeliculasServices,private renderer:Renderer2,private _router : Router) {
     this.ListarPeliculas();
    }
   peli:Pelicula[];
@@ -95,7 +97,6 @@ export class ListarestrenoComponent implements OnInit {
     var Persona_idPersona1 = document.getElementById('user')["value"];
     var Pelicula_idPelicula1=document.getElementById('idPelicula')["value"];
     var cantidad1=document.getElementById('cantidad')["value"];
-
     this.tem.idPersona=Persona_idPersona1;
     this.tem.Canitdad=cantidad1;
     this.tem.Fecha_Alquiler=Fecha_alquiler1;
@@ -105,12 +106,19 @@ export class ListarestrenoComponent implements OnInit {
       console.log(this.temporal=data);
      // this.mydetalle.hide();
 
-      alert('exito al alquilar su pelicula');
+     Swal.fire({
+      position: 'top-end',
+      type: 'success',
+      title: 'Agregado al carrito',
+      showConfirmButton: false,
+      timer: 1500
     })
+    }) 
+
 
 
   }
-  //evento para sacar el vuelto
+ 
 
   Alquilar(){
     var id=document.getElementById('idperso')["value"];
@@ -134,9 +142,6 @@ export class ListarestrenoComponent implements OnInit {
   keyup(event){
     var inputValue = document.getElementById('total')["value"];
     this.rpta =parseFloat(event)- parseFloat(inputValue) ;
-   
-   
-    
   } 
   Pagar(){
     var Persona_idPersona = document.getElementById('id_alquiler_Perso')["value"];
@@ -151,7 +156,14 @@ export class ListarestrenoComponent implements OnInit {
   // console.log(this.alquiler);
     this.peliculaService.alquilarPelicula(this.alqui).subscribe((data)=>{
         this.myAlquiler.hide();
-        alert('exito al alquilar su pelicula');
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Pelicula Alquilada',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this._router.navigate(["/Peliculas/Reportes"]);
       })
      
   }

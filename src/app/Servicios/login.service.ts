@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 url='http://localhost:8000/api/login/?';
+regis='http://localhost:8000/api/';
 
   constructor(private http: HttpClient) {
     
@@ -27,6 +28,12 @@ removeToken()
   getToken()
   {
     return localStorage.getItem("token");
+  }
+  Registrar(user){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json'
+     });
+     return this.http.post(this.regis + 'Persona/?',user,{ headers: headers});
   }
 }
 

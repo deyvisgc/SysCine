@@ -156,7 +156,7 @@
               </div>
         </div>
             <div class="form-group col-4">
-                <button type="button" class="btn btn-dark" (click)="Agregar('tabla2.remove()')">AGREGAR AL CARRITO</button>   
+                <button type="button" class="btn btn-dark" (click)="Agregar('tabla2.remove(),$event')">AGREGAR AL CARRITO</button>   
 
                <span style="margin-left: 10px" *ngFor="let tem of temporal"> <i class="fa fa-product-hunt fa-lg mt-4">TotalProductos: {{tem.count}}</i></span>
               </div>
@@ -181,7 +181,7 @@
                   <td>{{tem.peli}}</td>
                   <td>{{tem.can}}</td>
                   <td> {{tem.nom}}</td>
-                  <td> {{tem.sub}}</td>
+                  <td> {{tem.total}}</td>
                   <td> {{tem.cos}}</td>
                   <input value="{{tem.idper}}" type="hidden" id="idperso">
                   <td><button  class="btn btn-danger" (click)="Eliminar();">ELIMINAR PRODUCTO</button></td>

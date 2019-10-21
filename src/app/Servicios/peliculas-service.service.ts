@@ -57,6 +57,14 @@ export class PeliculasServices {
      });
      return this.httpclient.post(this.CrearPelicula + '/Registrar/?',pelicula,{ headers: headers});
   }
+  reporte(){
+    return this.httpclient.get(this.CrearPelicula + '/reporte');
+
+  }
+  reporte1(){
+    return this.httpclient.get(this.CrearPelicula + '/reporte1');
+
+  }
  
 
 }

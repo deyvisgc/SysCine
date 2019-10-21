@@ -1,151 +1,97 @@
 <div class="animated fadeIn">
     <div class="row">
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header">
-            <i class="fa fa-align-justify"></i> Peliculas Alquilados
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Titulo</th>
-                  <th>Genero</th>
-                  <th>Fecha Estreno</th>
-                  <th>foto_pelicula</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Samppa Nori</td>
-                  <td>2012/01/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Estavan Lykos</td>
-                  <td>2012/02/01</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-danger">Banned</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Chetan Mohamed</td>
-                  <td>2012/02/01</td>
-                  <td>Admin</td>
-                  <td>
-                    <span class="badge badge-secondary">Inactive</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Derick Maximinus</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Friderik Dávid</td>
-                  <td>2012/01/21</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header">
-            <i class="fa fa-align-justify"></i>Periodo de peliculas alquiladas
-          </div>
-          <div class="card-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                    <th>Titulo</th>
-                    <th>Genero</th>
-                     <th>Fecha ALquiler</th>
-                     <th>Fecha Vencimiento</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Yiorgos Avraamu</td>
-                  <td>2012/01/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Avram Tarasios</td>
-                  <td>2012/02/01</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-danger">Banned</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Quintin Ed</td>
-                  <td>2012/02/01</td>
-                  <td>Admin</td>
-                  <td>
-                    <span class="badge badge-secondary">Inactive</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Enéas Kwadwo</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Agapetus Tadeáš</td>
-                  <td>2012/01/21</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    
     </div>
-   
+    <div class="col-md-12 mb-4">
+        <!-- Nav tabs -->
+        <tabset>
+          <tab>
+            <ng-template tabHeading><i class="icon-list"></i>Detalle de la Pelicula</ng-template>
+            <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i> Peliculas Alquilados
+                </div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Titulo</th>
+                        <th>Genero</th>
+                        <th> Estreno</th>
+                        <th>Cliente</th>
+                         <th>foto</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let pelicula of peli">
+                      <tr>
+                        <td>{{pelicula.Titulo}}</td>
+                        <td>{{pelicula.Genero}}</td>
+                        <td>{{pelicula.Fecha_estreno}}</td>
+                        <td>{{pelicula.nombre}}</td>
+      
+                        <td>
+                          <span class="badge badge-success">{{pelicula.foto_pelicula}}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </div>
+              </div>
+          </tab>
+          <tab>
+            <ng-template tabHeading><i class="icon-calculator"></i>Detalle del Alquiler</ng-template>
+            <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i>Periodo de peliculas alquiladas
+                </div>
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                          <th>Titulo</th>
+                          <th>Cliente</th>
+                          <th>Fecha ALquiler</th>
+                          <th>Fecna Devolucion</th>
+                          <th>Precio</th>
+                          <th>Cantidad</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let pelicula of peli1">
+                      <tr>
+                          <td>{{pelicula.Titulo}}</td>
+                          <td>{{pelicula.nombre}}</td>
+                          <td>{{pelicula.Fecha_alquiler}}</td>
+                          <td>{{pelicula.Fecha_devolucion}}</td>
+                          <td>{{pelicula.total}}</td>
+                          <td>{{pelicula.cantiTotal}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </div>
+              </div>
+          </tab>
+        </tabset>
+      </div><!--/.col-->
     <!--/.row-->
   </div>
   

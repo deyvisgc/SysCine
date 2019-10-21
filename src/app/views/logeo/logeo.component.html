@@ -92,7 +92,7 @@
                                                         <div class="col-sm-12">
                                                             <div class="form-group">
                                                                 <label for="name">Usuario</label>
-                                                                <input type="text" class="form-control" id="user"
+                                                                <input type="text" class="form-control"  [(ngModel)]="user.email" id="user"
                                                                     placeholder="Enter your username">
                                                             </div>
                                                         </div>
@@ -102,7 +102,7 @@
                                                         <div class="col-sm-12">
                                                             <div class="form-group">
                                                                 <label for="ccnumber">Password</label>
-                                                                <input type="password" class="form-control"
+                                                                <input type="password"  [(ngModel)]="user.password" class="form-control"
                                                                     id="password" placeholder="Enter your password">
                                                             </div>
                                                         </div>
@@ -130,38 +130,38 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="name">Nombre</label>
-                                                                <input type="text" class="form-control" id="nombre"
+                                                                <input type="text"  [(ngModel)]="user.Nombre" class="form-control" id="nombre"
                                                                     placeholder="Enter your nombre">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="name">Apellidos</label>
-                                                                <input type="text" class="form-control" id="apellidos"
+                                                                <input type="text" [(ngModel)]="user.Apellidos" class="form-control" id="apellidos"
                                                                     placeholder="Enter your apellidos">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row col-sm-12">
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="name">Telefono</label>
-                                                                    <input type="text" class="form-control" id="telefono"
-                                                                        placeholder="Enter your telefono">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="name">Direccion</label>
-                                                                    <input type="text" class="form-control" id="apellidos"
-                                                                        placeholder="Enter your direccion">
-                                                                </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="name">Telefono</label>
+                                                                <input type="text" [(ngModel)]="user.Telefono" class="form-control" id="telefono"
+                                                                    placeholder="Enter your telefono">
                                                             </div>
                                                         </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="name">Direccion</label>
+                                                                <input type="text" class="form-control" [(ngModel)]="user.Direccion" id="apellidos"
+                                                                    placeholder="Enter your direccion">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                     </div>
+                                    </div>
                                     <!--/.row-->
                                 </tab>
                             </tabset>
@@ -174,6 +174,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+                <button type="button" class="btn  btn-success active" (click)="RegisUser()">Registrar</button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
