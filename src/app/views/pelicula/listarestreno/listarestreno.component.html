@@ -157,8 +157,10 @@
         </div>
             <div class="form-group col-4">
                 <button type="button" class="btn btn-dark" (click)="Agregar('tabla2.remove(),$event')">AGREGAR AL CARRITO</button>   
-
-               <span style="margin-left: 10px" *ngFor="let tem of temporal"> <i class="fa fa-product-hunt fa-lg mt-4">TotalProductos: {{tem.count}}</i></span>
+<!-- 
+  <span style="margin-left: 10px"> <i class="fa fa-product-hunt fa-lg mt-4">TotalProductos: {{tem.count}}</i></span>
+ -->
+               
               </div>
           </div>
         </form>
@@ -172,18 +174,18 @@
                   <th >Cantidad</th>
                   <th>Cliente</th>
                   <th>SubTotal</th>
-                  <th >Costo</th>
+                  <th>Costo</th>
                   <th >Operaciones</th>
                 </tr>
               </thead>
               <tbody >
                 <tr *ngFor="let tem of temporal">
-                  <td>{{tem.peli}}</td>
-                  <td>{{tem.can}}</td>
-                  <td> {{tem.nom}}</td>
-                  <td> {{tem.total}}</td>
-                  <td> {{tem.cos}}</td>
-                  <input value="{{tem.idper}}" type="hidden" id="idperso">
+                  <td>{{tem.Titulo}}</td>
+                  <td>{{tem.sumcanti}}</td>
+                  <td> {{tem.nombres}}</td>
+                  <td> {{tem.Total}}</td>
+                  <td> {{tem.Costo}}</td>
+                  <input value="{{tem.idPersona}}" type="hidden" id="idperso">
                   <td><button  class="btn btn-danger" (click)="Eliminar();">ELIMINAR PRODUCTO</button></td>
                 </tr>
               </tbody>

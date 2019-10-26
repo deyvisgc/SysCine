@@ -145,16 +145,11 @@ export class ListarestrenoComponent implements OnInit {
   } 
   Pagar(){
     var Persona_idPersona = document.getElementById('id_alquiler_Perso')["value"];
-    var Pelicula_idPelicula = document.getElementById('id_alquiler_Pelicula')["value"];
-    var alquiler_vuelto = document.getElementById('VUELTO')["value"];
-    var total = document.getElementById('total')["value"];
-
     this.alqui.Persona_idPersona=Persona_idPersona;
-    this.alqui.Pelicula_idPelicula=Pelicula_idPelicula;
-    this.alqui.alquiler_vuelto=alquiler_vuelto;
-    this.alqui.total=total;
+
   // console.log(this.alquiler);
     this.peliculaService.alquilarPelicula(this.alqui).subscribe((data)=>{
+ 
         this.myAlquiler.hide();
         Swal.fire({
           position: 'top-end',

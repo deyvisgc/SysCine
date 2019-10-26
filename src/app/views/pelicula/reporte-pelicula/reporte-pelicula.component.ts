@@ -14,11 +14,14 @@ export class ReportePeliculaComponent implements OnInit {
   }
   peli:Pelicula[];
   peli1:Pelicula[];
+  suma:Pelicula[];
    reporte(){
     this.peliculaService.reporte().subscribe((data:Pelicula[])=>{
       this.peli = data;  });
       this.peliculaService.reporte1().subscribe((data:Pelicula[])=>{
         this.peli1 = data});
+        this.peliculaService.sumatotal().subscribe((data:Pelicula[])=>{
+          this.suma = data});
   
    }
   ngOnInit() {

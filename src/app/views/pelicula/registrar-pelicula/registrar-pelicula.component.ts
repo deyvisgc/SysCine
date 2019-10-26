@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PeliculasServices } from '../../../Servicios/peliculas-service.service';
 import { Pelicula } from '../../../interfaces/Pelicula';
-
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registrar-pelicula',
   templateUrl: './registrar-pelicula.component.html',
@@ -12,7 +13,7 @@ import { Pelicula } from '../../../interfaces/Pelicula';
 export class RegistrarPeliculaComponent implements OnInit {
 
   selectedFile: File;
-  constructor(private peliculaService:PeliculasServices) { }
+  constructor(private peliculaService:PeliculasServices,private _router : Router) { }
  peli:Pelicula={
 
   Genero: null,
@@ -47,7 +48,7 @@ export class RegistrarPeliculaComponent implements OnInit {
   }
   
   RegistrarPelicula(){
-
+    
     
     var titulo=document.getElementById('titulo')['value'];
     var genero=document.getElementById('genero')['value'];
@@ -56,6 +57,13 @@ export class RegistrarPeliculaComponent implements OnInit {
     var cantidad=document.getElementById('cantidad')['value'];
     var Descripcion=document.getElementById('Descripcion')['value'];
     var hola=this.selectedFile;
+    this.peli.Titulo=titulo;
+    this.peli.Genero=genero;
+    this.peli.Costo=precio;
+    this.peli.Fecha_estreno=fecha_estreno;
+    this.peli.Cantidad_Pelicula=cantidad;
+    this.peli.Descripcion=Descripcion;
+
    /* this.peli.foto_pelicula=hola;
     this.peli.Titulo=titulo;
     this.peli.Genero=genero;
@@ -64,7 +72,19 @@ export class RegistrarPeliculaComponent implements OnInit {
     this.peli.Cantidad_Pelicula=cantidad;
     this.peli.Descripcion=Descripcion;
     */
-    
+   this.peliculaService.agregarPelicula(this.peli).subscribe((data:Pelicula[])=>{
+       
+    // this.mydetalle.hide();
+
+    Swal.fire({
+      position: 'top-end',
+      type: 'success',
+      title: 'Registrado Correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this._router.navigate(["/Peliculas/Reportes"]);
+   })
       
 
       

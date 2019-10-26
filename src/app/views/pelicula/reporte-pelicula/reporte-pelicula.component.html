@@ -17,22 +17,26 @@
                       <tr>
                         <th>Titulo</th>
                         <th>Genero</th>
-                        <th> Estreno</th>
-                        <th>Cliente</th>
-                         <th>foto</th>
-                      </tr>
+                        <th>Fecha Estreno</th>
+                        <th>Costo</th>
+                        <th>Cantidad</th>
+                        <th>Ranking</th>
+                        <th>Estado</th>
+                    </tr>
                     </thead>
                     <tbody *ngFor="let pelicula of peli">
                       <tr>
                         <td>{{pelicula.Titulo}}</td>
                         <td>{{pelicula.Genero}}</td>
                         <td>{{pelicula.Fecha_estreno}}</td>
-                        <td>{{pelicula.nombre}}</td>
-      
+                        <td>{{pelicula.Costo}}</td>
+                        <td>{{pelicula.Cantidad_Pelicula}}</td>
+                        <td>{{pelicula.Ranking}}</td>
                         <td>
-                          <span class="badge badge-success">{{pelicula.foto_pelicula}}</span>
+                          <span class="badge badge-success">{{pelicula.Estado_Pelicula}}</span>
                         </td>
-                      </tr>
+
+                    </tr>
                     </tbody>
                   </table>
                   <ul class="pagination">
@@ -62,20 +66,30 @@
                           <th>Cliente</th>
                           <th>Fecha ALquiler</th>
                           <th>Fecna Devolucion</th>
-                          <th>Precio</th>
                           <th>Cantidad</th>
+                           <th>Estado</th>
+                           <th>Precio</th>
+                         
                       </tr>
                     </thead>
                     <tbody *ngFor="let pelicula of peli1">
                       <tr>
                           <td>{{pelicula.Titulo}}</td>
                           <td>{{pelicula.nombre}}</td>
-                          <td>{{pelicula.Fecha_alquiler}}</td>
-                          <td>{{pelicula.Fecha_devolucion}}</td>
-                          <td>{{pelicula.total}}</td>
-                          <td>{{pelicula.cantiTotal}}</td>
+                          <td>{{pelicula.dta_Fecha_alquiler}}</td>
+                          <td>{{pelicula.dta_Fecha_devolucion}}</td>
+                          <td>{{pelicula.dta_cantidad}}</td>
+                          <td><span class="badge badge-danger">{{pelicula.Estado_Pelicula}}</span></td>
+                          <td>{{pelicula.Subtotal}}</td>
                       </tr>
+                  
                     </tbody>
+                    <tfoot >
+                      <tr>
+                          <th  colspan="6" >total</th>
+                          <td *ngFor="let sumatotal of suma">{{sumatotal.total}}</td>
+                      </tr>
+                  </tfoot>
                   </table>
                   <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Prev</a></li>

@@ -65,6 +65,10 @@ export class PeliculasServices {
     return this.httpclient.get(this.CrearPelicula + '/reporte1');
 
   }
+  sumatotal(){
+    return this.httpclient.get(this.CrearPelicula + '/sumartotal');
+
+  }
  
 
 }
